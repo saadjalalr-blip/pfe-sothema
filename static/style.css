@@ -1187,3 +1187,13 @@ main {
 }
 
 .moy-row span { color: rgba(26,37,64,0.6); }
+@media (min-width: 1400px) {
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  html {
+    font-size: 13px;
+  }
+}
