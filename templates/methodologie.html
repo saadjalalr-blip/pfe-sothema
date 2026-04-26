@@ -1,0 +1,412 @@
+{% extends 'base.html' %}
+{% set page = 'methodologie' %}
+{% set titre = 'Méthodologie DMAIC' %}
+
+{% block content %}
+
+<div class="section-label">Chapitre 4</div>
+<h1 class="section-title">Méthodologie de travail — Démarche DMAIC</h1>
+
+<div class="dmaic-wrapper">
+
+  <!-- TABLEAU DMAIC -->
+  <div class="dmaic-table">
+    <div class="dmaic-row header">
+      <div class="dmaic-cell">Phase DMAIC</div>
+      <div class="dmaic-cell">Application dans cette étude</div>
+    </div>
+
+    <div class="dmaic-row clickable active" onclick="showPanel('D', this)">
+      <div class="dmaic-cell phase">
+        <span class="phase-letter">D</span>
+        <span class="phase-name">Define — Définir</span>
+      </div>
+      <div class="dmaic-cell">Définition de la problématique, fiche KPI, analyse QQOQCP, périmètre de l'étude et objectif de l'étude.</div>
+    </div>
+
+    <div class="dmaic-row clickable" onclick="showPanel('M', this)">
+      <div class="dmaic-cell phase">
+        <span class="phase-letter">M</span>
+        <span class="phase-name">Measure — Mesurer</span>
+      </div>
+      <div class="dmaic-cell">Collecte des données de mirage sur les lots, calcul des KPIs et rendements.</div>
+    </div>
+
+    <div class="dmaic-row clickable" onclick="showPanel('A', this)">
+      <div class="dmaic-cell phase">
+        <span class="phase-letter">A</span>
+        <span class="phase-name">Analyze — Analyser</span>
+      </div>
+      <div class="dmaic-cell">Pareto des défauts, Ishikawa, identification des hypothèses de sources de fibres, 5 Pourquoi.</div>
+    </div>
+
+    <div class="dmaic-row clickable" onclick="showPanel('I', this)">
+      <div class="dmaic-cell phase">
+        <span class="phase-letter">I</span>
+        <span class="phase-name">Improve — Améliorer</span>
+      </div>
+      <div class="dmaic-cell">Propositions d'amélioration correctives et investigations complémentaires.</div>
+    </div>
+
+    <div class="dmaic-row clickable" onclick="showPanel('C', this)">
+      <div class="dmaic-cell phase">
+        <span class="phase-letter">C</span>
+        <span class="phase-name">Control — Contrôler</span>
+      </div>
+      <div class="dmaic-cell">AMDEC procédé — cotation IPR (Gravité × Occurrence × Détection) pour prioriser les risques.</div>
+    </div>
+  </div>
+
+  <!-- PANELS -->
+  <div class="dmaic-panels">
+
+    <!-- D -->
+    <div class="dmaic-panel active" id="panel-D">
+      <div class="panel-tag">D — Define</div>
+      <h2 class="panel-title">Définir</h2>
+
+      <div class="sub-tabs">
+        <button class="sub-tab active" onclick="showSub('kpi', this)">Fiche KPI</button>
+        <button class="sub-tab" onclick="showSub('perimetre', this)">Périmètre</button>
+        <button class="sub-tab" onclick="showSub('objectif', this)">Objectifs</button>
+      </div>
+
+      <div class="sub-panel active" id="sub-kpi">
+        <div class="kpi-header">
+          <div class="kpi-title-box">FICHE KPI</div>
+          <div class="kpi-name">Taux de pertes de mirage</div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi-row">
+            <div class="kpi-label">Objectif</div>
+            <div class="kpi-value">Suivre et réduire les pertes liées à l'inspection visuelle</div>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-label">Définition</div>
+            <div class="kpi-value">Pourcentage de flacons perdus au mirage par rapport à la quantité théorique attendue</div>
+          </div>
+          <div class="kpi-row highlight">
+            <div class="kpi-label">Formule</div>
+            <div class="kpi-value formula">(Total rejets) / (Quantité reçue) × 100</div>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-label">Unité</div>
+            <div class="kpi-value">%</div>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-label">Produits</div>
+            <div class="kpi-value">YPEVA 4mL, 16mL — ZELVA 10mL, 50mL</div>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-label">Zone</div>
+            <div class="kpi-value">UBS — Inspection visuelle</div>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-label">Type de mirage</div>
+            <div class="kpi-value">Mirage manuel</div>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-label">Position</div>
+            <div class="kpi-value">Après remplissage, bouchage et sertissage</div>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-label">Source données</div>
+            <div class="kpi-value">Log mirage / Batch record</div>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-label">Responsable</div>
+            <div class="kpi-value">Production / Assurance Qualité</div>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-label">Fréquence</div>
+            <div class="kpi-value">Par lot</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-panel" id="sub-perimetre">
+        <div class="detail-cards">
+          <div class="detail-card">
+            <h4>Étape ciblée</h4>
+            <p>Analyse des pertes observées lors de l'étape de mirage au niveau de l'Unité des Blocs Stériles (UBS).</p>
+          </div>
+          <div class="detail-card">
+            <h4>Produits concernés</h4>
+            <p>ZELVA 50ML — ZELVA 10ML — YPEVA 16ML — YPEVA 4ML. Produits Biocad conditionnés en flacons en verre.</p>
+          </div>
+          <div class="detail-card">
+            <h4>Défauts analysés</h4>
+            <p>Défauts détectés lors de l'inspection visuelle après remplissage, bouchage et sertissage des flacons.</p>
+          </div>
+          <div class="detail-card">
+            <h4>Source des données</h4>
+            <p>Documents de suivi de production — batch records et log books de mirage. Données extraites sur 80+ lots.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-panel" id="sub-objectif">
+        <p style="color: rgba(26,37,64,0.7); margin-bottom: 20px; font-size: 15px; line-height: 1.7;">
+          Le présent travail vise à étudier et analyser les pertes observées lors de l'étape de mirage des produits Biocad (YPEVA et ZELVA).
+        </p>
+        <div class="objectif-list">
+          <div class="objectif-item">
+            <div class="obj-num">01</div>
+            <div class="obj-text">Assurer le suivi des pertes au mirage pour les produits étudiés</div>
+          </div>
+          <div class="objectif-item">
+            <div class="obj-num">02</div>
+            <div class="obj-text">Analyser les données de rejet issues du mirage manuel</div>
+          </div>
+          <div class="objectif-item">
+            <div class="obj-num">03</div>
+            <div class="obj-text">Identifier les types de défauts les plus fréquemment observés lors de l'inspection visuelle</div>
+          </div>
+          <div class="objectif-item">
+            <div class="obj-num">04</div>
+            <div class="obj-text">Caractériser les particules contaminantes détectées dans les flacons rejetés</div>
+          </div>
+          <div class="objectif-item">
+            <div class="obj-num">05</div>
+            <div class="obj-text">Rechercher les origines potentielles des défauts dans les différentes étapes du procédé</div>
+          </div>
+          <div class="objectif-item">
+            <div class="obj-num">06</div>
+            <div class="obj-text">Proposer des axes d'amélioration pour réduire les pertes tout en respectant les exigences BPF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M — vide pour l'instant -->
+    <div class="dmaic-panel" id="panel-M">
+  <div class="panel-tag">M — Measure</div>
+  <h2 class="panel-title">Mesurer</h2>
+
+  <p class="panel-intro">Dans un premier temps, une analyse statistique des données collectées sera réalisée à travers l'étude des indicateurs de performance, notamment les pertes de mirage et le rendement de mirage. Les résultats seront présentés sous forme de tableaux et de représentations graphiques afin de faciliter leur interprétation.</p>
+
+  <div class="graphes-grid">
+
+    <div class="graphe-card">
+      <div class="graphe-num">01</div>
+      <div class="graphe-info">
+        <div class="graphe-title">Analyse des pertes de mirage moyen selon les produits</div>
+        <img src="{{ url_for('static', filename='graphe1.png') }}" alt="Graphe 1" class="graphe-img"/>
+        <button class="interp-btn" onclick="toggleInterp('interp1', this)">Voir l'interprétation</button>
+        <div class="interp-box" id="interp1">
+          ZELVA 50ML : taux le plus élevé — 9,18% malgré un volume inspecté plus faible (5521 unités). YPEVA 4ML : meilleure performance — 1,49% sur le plus grand volume inspecté (15558 unités). YPEVA 16ML et ZELVA 10ML affichent des niveaux intermédiaires respectivement de 3,24% et 2,33%. ZELVA 50ML reste le produit le plus critique et le plus impacté par les rejets au mirage.
+        </div>
+      </div>
+    </div>
+
+    <div class="graphe-card">
+      <div class="graphe-num">02</div>
+      <div class="graphe-info">
+        <div class="graphe-title">Analyse de rendement de mirage moyen pour chaque produit</div>
+        <img src="{{ url_for('static', filename='graphe2.png') }}" alt="Graphe 2" class="graphe-img"/>
+        <button class="interp-btn" onclick="toggleInterp('interp2', this)">Voir l'interprétation</button>
+        <div class="interp-box" id="interp2">
+          YPEVA 4ML présente le rendement le plus élevé avec 98,51%. ZELVA 50ML affiche le rendement le plus faible avec 90,82% — soit près d'un flacon rejeté sur dix. Ces résultats sont cohérents avec l'analyse des pertes et désignent ZELVA 50ML comme le produit prioritaire de cette étude.
+        </div>
+      </div>
+    </div>
+
+    <div class="graphe-card">
+      <div class="graphe-num">03</div>
+      <div class="graphe-info">
+        <div class="graphe-title">Analyse de rendement global pour chaque produit</div>
+        <img src="{{ url_for('static', filename='graphe3.png') }}" alt="Graphe 3" class="graphe-img"/>
+        <button class="interp-btn" onclick="toggleInterp('interp3', this)">Voir l'interprétation</button>
+        <div class="interp-box" id="interp3">
+          ZELVA 50ML présente le rendement global le plus faible avec 85,27% — en dessous du seuil minimal acceptable de 90%. ZELVA 10ML et YPEVA 4ML affichent les meilleures performances avec respectivement 94,73% et 94,22%, traduisant une bonne maîtrise globale du procédé pour ces formats.
+        </div>
+      </div>
+    </div>
+
+    <div class="graphe-card">
+      <div class="graphe-num">04</div>
+      <div class="graphe-info">
+        <div class="graphe-title">Analyse de la variabilité des pertes de mirage</div>
+        <img src="{{ url_for('static', filename='graphe4.png') }}" alt="Graphe 4" class="graphe-img"/>
+        <button class="interp-btn" onclick="toggleInterp('interp4', this)">Voir l'interprétation</button>
+        <div class="interp-box" id="interp4">
+          ZELVA 50ML présente la variabilité la plus importante — ses pertes oscillent entre 5,41% et 16,76%, indiquant une instabilité lot par lot. YPEVA 4ML reste stable entre 0,80% et 2,43%, confirmant une bonne maîtrise du procédé. Cette instabilité de ZELVA 50ML renforce la nécessité d'une analyse approfondie des causes.
+        </div>
+      </div>
+    </div>
+
+    <div class="graphe-card wide">
+      <div class="graphe-num">05</div>
+      <div class="graphe-info">
+        <div class="graphe-title">Analyse des défauts observés au mirage manuel</div>
+        <img src="{{ url_for('static', filename='graphe5.png') }}" alt="Graphe 5" class="graphe-img"/>
+        <button class="interp-btn" onclick="toggleInterp('interp5', this)">Voir l'interprétation</button>
+        <div class="interp-box" id="interp5">
+        L’histogramme montrent que le défaut fibre est majoritaire pour ZELVA 50ML (412 unités rejetées).
+Les particules (PAR) représentent la deuxième cause de rejets, avec un total plus faible, tandis que les résidus de verre (RES_V) ont un impact minimal sur les pertes.
+On remarque que les produits YPEVA 16ML et YPEVA 4ML présentent également des fibres comme défaut, mais à des niveaux moins élevés que ZELVA 50ML.
+Ces résultats indiquent que l’amélioration du contrôle des fibres dans le procédé de mirage manuel est prioritaire pour réduire les pertes.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- A — vide pour l'instant -->
+   <div class="dmaic-panel" id="panel-A">
+  <div class="panel-tag">A — Analyze</div>
+  <h2 class="panel-title">Analyser</h2>
+
+  <!-- ══ PARETO ══ -->
+  <div class="analyse-section">
+    <h3 class="analyse-titre">Analyse Pareto</h3>
+    <div class="pareto-grid">
+      <div class="pareto-img-box">
+        <img src="{{ url_for('static', filename='pareto_tableau.png') }}" alt="Tableau Pareto" class="graphe-img"/>
+      </div>
+      <div class="pareto-img-box">
+        <img src="{{ url_for('static', filename='pareto_courbe.png') }}" alt="Courbe Pareto" class="graphe-img"/>
+        <button class="interp-btn" onclick="toggleInterp('interp-pareto', this)">Voir l'interprétation</button>
+        <div class="interp-box" id="interp-pareto">
+          Les fibres constituent le défaut majoritaire avec 69,67% des rejets totaux (827 unités), loin devant les particules (26,71%) et les résidus de verre (3,62%). ZELVA 50ML concentre le plus grand nombre de fibres avec 412 unités. La maîtrise des fibres est l'action prioritaire pour réduire les pertes au mirage.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ISHIKAWA ══ -->
+  <div class="analyse-section">
+    <h3 class="analyse-titre">Diagramme Ishikawa</h3>
+    <img src="{{ url_for('static', filename='ishikawa.png') }}" alt="Ishikawa" class="graphe-img"/>
+  </div>
+
+  <!-- ══ HYPOTHÈSES ══ -->
+  <div class="analyse-section">
+    <h3 class="analyse-titre">Identification et justification scientifique des hypothèses de sources de fibres par étape du procédé</h3>
+
+    <!-- Fondements -->
+<h4 class="hyp-sous-titre">Fondements scientifiques</h4>
+<div class="hyp-grid" style="grid-template-columns: 1fr;">
+  <div class="hyp-card" onclick="toggleHyp('fond12', this)">
+    <div class="hyp-num">F</div>
+    <div class="hyp-name">Fondements 1 & 2 — Transestérification PET + État viscoélastique à 230°C</div>
+  </div>
+</div>
+<div class="hyp-panel" id="fond12">
+  <img src="{{ url_for('static', filename='fondement1_2.png') }}" alt="Fondements 1 et 2" class="graphe-img"/>
+</div>
+
+    <!-- H1-H6 -->
+    <h4 class="hyp-sous-titre">Hypothèses — Sources de fibres pour tous les produits Biocad</h4>
+    <div class="hyp-grid">
+      <div class="hyp-card" onclick="toggleHyp('hyp1', this)">
+        <div class="hyp-num">H1</div>
+        <div class="hyp-name">Torchons Polox — Nettoyage du four</div>
+      </div>
+      <div class="hyp-card" onclick="toggleHyp('hyp2', this)">
+        <div class="hyp-num">H2</div>
+        <div class="hyp-name">20 torchons dans la charge autoclave</div>
+      </div>
+      <div class="hyp-card" onclick="toggleHyp('hyp3', this)">
+        <div class="hyp-num">H3</div>
+        <div class="hyp-name">Torchons bleus en zone aseptique</div>
+      </div>
+      <div class="hyp-card" onclick="toggleHyp('hyp4', this)">
+        <div class="hyp-num">H4</div>
+        <div class="hyp-name">Sachets stérilisables des bouchons</div>
+      </div>
+      <div class="hyp-card" onclick="toggleHyp('hyp5', this)">
+        <div class="hyp-num">H5</div>
+        <div class="hyp-name">Combinaisons stériles des opérateurs</div>
+      </div>
+      <div class="hyp-card" onclick="toggleHyp('hyp6', this)">
+        <div class="hyp-num">H6</div>
+        <div class="hyp-name">Arrêts techniques machine Steriline</div>
+      </div>
+      <div class="hyp-card" onclick="toggleHyp('hyp7', this)">
+  <div class="hyp-num">H7</div>
+  <div class="hyp-name">Variabilité des pratiques opératoires selon les équipes</div>
+</div>
+    </div>
+    <div class="hyp-panel" id="hyp1"><img src="{{ url_for('static', filename='h1.png') }}" alt="H1" class="graphe-img"/></div>
+    <div class="hyp-panel" id="hyp2"><img src="{{ url_for('static', filename='h2.png') }}" alt="H2" class="graphe-img"/></div>
+    <div class="hyp-panel" id="hyp3"><img src="{{ url_for('static', filename='h3.png') }}" alt="H3" class="graphe-img"/></div>
+    <div class="hyp-panel" id="hyp4"><img src="{{ url_for('static', filename='h4.png') }}" alt="H4" class="graphe-img"/></div>
+    <div class="hyp-panel" id="hyp5"><img src="{{ url_for('static', filename='h5.png') }}" alt="H5" class="graphe-img"/></div>
+    <div class="hyp-panel" id="hyp6"><img src="{{ url_for('static', filename='h6.png') }}" alt="H6" class="graphe-img"/></div>
+<div class="hyp-panel" id="hyp7"><img src="{{ url_for('static', filename='h7.png') }}" alt="H7" class="graphe-img"/></div>
+    <!-- HS1-HS3 -->
+    <h4 class="hyp-sous-titre">Hypothèses spécifiques — Produit le plus critique : ZELVA 50ML</h4>
+    <div class="hyp-grid">
+      <div class="hyp-card zelva" onclick="toggleHyp('h8', this)">
+        <div class="hyp-num">H8</div>
+        <div class="hyp-name">Connexions multiples de poches</div>
+      </div>
+      <div class="hyp-card zelva" onclick="toggleHyp('h9', this)">
+        <div class="hyp-num">H9</div>
+        <div class="hyp-name">Temps de remplissage plus long</div>
+      </div>
+      <div class="hyp-card zelva" onclick="toggleHyp('h10', this)">
+        <div class="hyp-num">H10</div>
+        <div class="hyp-name">Transfert fibres couvercle caissettes</div>
+      </div>
+    </div>
+    <div class="hyp-panel" id="h8"><img src="{{ url_for('static', filename='h8.png') }}" alt="H8" class="graphe-img"/></div>
+    <div class="hyp-panel" id="h9"><img src="{{ url_for('static', filename='h9.png') }}" alt="H9" class="graphe-img"/></div>
+    <div class="hyp-panel" id="h10"><img src="{{ url_for('static', filename='h10.png') }}" alt="H10" class="graphe-img"/></div>
+
+<!-- ══ 5 POURQUOI ══ -->
+  <div class="analyse-section">
+    <h3 class="analyse-titre">Analyse des causes racines — Méthode des 5 Pourquoi</h3>
+
+    <div class="hyp-grid" style="grid-template-columns: 1fr;">
+      <div class="hyp-card" onclick="toggleHyp('panel-5why', this)">
+        <div class="hyp-num">5P</div>
+        <div class="hyp-name">Méthode des 5 Pourquoi — Identification de la cause racine</div>
+      </div>
+    </div>
+
+    <div class="hyp-panel" id="panel-5why">
+      <div class="pareto-img-box">
+        <img src="{{ url_for('static', filename='5pourquoi.png') }}" alt="5 Pourquoi" class="graphe-img"/>
+        <button class="interp-btn" onclick="toggleInterp('interp-5why', this)">Voir l'interprétation</button>
+        <div class="interp-box" id="interp-5why">
+          L'analyse des 5 Pourquoi révèle que la cause racine des pertes au mirage n'est pas un défaut intrinsèque de la solution médicamenteuse — démontré par la filtration stérilisante à 0,2 μm qui retient systématiquement les fibres de 15 à 20 μm — mais une contamination fibreuse environnementale d'origine multiple, aggravée par des écarts procéduraux observés lors du Gemba Walk et par l'effet cumulatif de l'augmentation du nombre de lots produits.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+    <!-- I — vide pour l'instant -->
+    <div class="dmaic-panel" id="panel-I"></div>
+
+    <!-- C — vide pour l'instant -->
+    <div class="dmaic-panel" id="panel-C"></div>
+
+  </div>
+</div>
+
+<script>
+function showPanel(letter, row) {
+  document.querySelectorAll('.dmaic-row.clickable').forEach(r => r.classList.remove('active'));
+  document.querySelectorAll('.dmaic-panel').forEach(p => p.classList.remove('active'));
+  row.classList.add('active');
+  document.getElementById('panel-' + letter).classList.add('active');
+  if (letter === 'D') {
+    document.querySelectorAll('.sub-tab')[0].click();
+  }
+}
+
+function showSub(id, btn) {
+  document.querySelectorAll('.sub-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sub-' + id).classList.add('active');
+}
+</script>
+
+{% endblock %}

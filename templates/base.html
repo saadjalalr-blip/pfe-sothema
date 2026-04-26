@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PFE SOTHEMA — {{ titre }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logos">
+      <div class="logo-box">
+        <img src="{{ url_for('static', filename='fst.png') }}" alt="FST Settat"/>
+      </div>
+      <div class="logo-divider"></div>
+         <div class="nav-title">SOTHEMA</div>
+    </div>
+    </div>
+    <div class="nav-links">
+      <a href="/" class="{{ 'active' if page == 'accueil' }}">Accueil</a>
+      <a href="/introduction" class="{{ 'active' if page == 'introduction' }}">Introduction</a>
+      <a href="/problematique" class="{{ 'active' if page == 'problematique' }}">Problématique</a>
+      <a href="/procede" class="{{ 'active' if page == 'procede' }}">Procédé</a>
+      <a href="/methodologie" class="{{ 'active' if page == 'methodologie' }}">Méthodologie</a>
+      <a href="/calculs" class="{{ 'active' if page == 'calculs' }}">Calculs</a>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% set page = 'introduction' %}
+{% set titre = 'Introduction' %}
+
+{% block content %}
+
+<div class="section-label">Chapitre 1</div>
+<h1 class="section-title">Introduction générale</h1>
+
+<div class="content-grid">
+  <div class="card">
+    <h3>Contexte industriel</h3>
+    <p>SOTHEMA, laboratoire pharmaceutique 100% marocain implanté à Bouskoura depuis 1976, assure le remplissage aseptique, le bouchage et le conditionnement de produits injectables biosimilaires pour le compte du laboratoire Biocad — solutions médicamenteuses livrées en poches stériles depuis la Russie.</p>
+  </div>
+  <div class="card">
+    <h3>Le mirage — étape critique</h3>
+    <p>L'étape d'inspection visuelle — le mirage — constitue une barrière critique permettant de détecter les particules visibles, fibres et anomalies en suspension dans les solutions injectables. Des pertes significatives ont été observées lors de cette étape pour les produits Biocad.</p>
+  </div>
+  <div class="card">
+    <h3>Les produits étudiés</h3>
+    <p>YPEVA (bevacizumab) en flacons de 4mL et 16mL — ZELVA (trastuzumab) en flacons de 10mL et 50mL. Des biosimilaires oncologiques injectables à haute valeur ajoutée, dont chaque unité rejetée représente une perte financière directe.</p>
+  </div>
+  <div class="card">
+    <h3>Démarche adoptée</h3>
+    <p>Une démarche DMAIC — Define, Measure, Analyze, Improve, Control — a été adoptée pour identifier et justifier scientifiquement les sources de contamination fibreuse et proposer des actions correctives concrètes.</p>
+  </div>
+</div>
+
+<div class="prob-question" style="margin-top: 32px;">
+  Comment identifier et analyser les sources de contamination fibreuse à l'origine des pertes observées lors du mirage des produits Biocad (YPEVA et ZELVA), afin de proposer des actions correctives permettant de réduire ce taux de pertes tout en garantissant les exigences de qualité pharmaceutique ?
+</div>
+
+<div class="stat-row">
+  <div class="stat-box">
+    <div class="val">80+</div>
+    <div class="lbl">Lots analysés</div>
+  </div>
+  <div class="stat-box">
+    <div class="val">~70%</div>
+    <div class="lbl">Défauts fibres</div>
+  </div>
+  <div class="stat-box">
+    <div class="val">ZELVA 50ML</div>
+    <div class="lbl">Format le plus critique</div>
+  </div>
+  <div class="stat-box">
+    <div class="val">H1 → H10</div>
+    <div class="lbl">Hypothèses identifiées</div>
+  </div>
+</div>
+
+{% endblock %}

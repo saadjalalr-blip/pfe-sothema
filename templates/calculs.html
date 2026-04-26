@@ -1,0 +1,354 @@
+{% extends 'base.html' %}
+{% set page = 'calculs' %}
+{% set titre = 'Calculs' %}
+
+{% block content %}
+
+<div class="section-label">Outil de calcul</div>
+<h1 class="section-title">Entrée des données — Calculs automatiques</h1>
+
+<div class="calculs-wrapper">
+
+  <!-- ══ FORMULAIRE ══ -->
+  <div class="form-section">
+    <h3 class="form-titre">Saisie d'un lot</h3>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>Nom du produit</label>
+        <select id="produit" onchange="updateQt()">
+          <option value="">-- Choisir --</option>
+          <option value="ZELVA 50ML" data-qt="196">ZELVA 50ML</option>
+          <option value="ZELVA 10ML" data-qt="956">ZELVA 10ML</option>
+          <option value="YPEVA 16ML" data-qt="301">YPEVA 16ML</option>
+          <option value="YPEVA 4ML"  data-qt="1162">YPEVA 4ML</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Numéro de lot</label>
+        <input type="number" id="num_lot" placeholder="Ex: 1"/>
+      </div>
+
+      <div class="form-group">
+        <label>Quantité reçue</label>
+        <input type="number" id="qu_recue" placeholder="Ex: 184" oninput="calcAuto()"/>
+      </div>
+
+      <div class="form-group">
+        <label>Date de répartition</label>
+        <input type="date" id="date_rep"/>
+      </div>
+
+      <div class="form-group">
+        <label>Fibres</label>
+        <input type="number" id="fib" value="0" min="0" oninput="calcAuto()"/>
+      </div>
+
+      <div class="form-group">
+        <label>Particules</label>
+        <input type="number" id="par" value="0" min="0" oninput="calcAuto()"/>
+      </div>
+
+      <div class="form-group">
+        <label>Résidu de verre</label>
+        <input type="number" id="res_v" value="0" min="0" oninput="calcAuto()"/>
+      </div>
+
+      <div class="form-group">
+        <label>Casse</label>
+        <input type="number" id="casse" value="0" min="0" oninput="calcAuto()"/>
+      </div>
+
+      <div class="form-group">
+        <label>Fêlé ébréché</label>
+        <input type="number" id="febr" value="0" min="0" oninput="calcAuto()"/>
+      </div>
+
+      <div class="form-group calc-auto">
+        <label>Total défauts</label>
+        <input type="number" id="total" readonly/>
+      </div>
+
+      <div class="form-group calc-auto">
+        <label>Quantité bon mirage</label>
+        <input type="number" id="q_bon_mir" readonly/>
+      </div>
+
+      <div class="form-group calc-auto">
+        <label>Pertes mirage (%)</label>
+        <input type="text" id="pertes" readonly/>
+      </div>
+
+      <div class="form-group calc-auto">
+        <label>Rendement mirage (%)</label>
+        <input type="text" id="rend_mir" readonly/>
+      </div>
+
+      <div class="form-group calc-auto">
+        <label>Rendement global (%)</label>
+        <input type="text" id="rend_glob" readonly/>
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-ajouter" onclick="ajouterLot()">+ Ajouter ce lot</button>
+      <button class="btn-reset" onclick="resetForm()">Réinitialiser</button>
+    </div>
+
+  </div>
+
+  <!-- ══ TABLEAU ══ -->
+  <div class="tableau-section">
+    <div class="tableau-header">
+      <h3 class="form-titre">Tableau des lots enregistrés</h3>
+      <button class="btn-export" onclick="exportExcel()">⬇ Exporter Excel</button>
+    </div>
+
+    <div class="tableau-wrapper">
+      <table id="tableau-lots">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Lot</th>
+            <th>QU_RECUE</th>
+            <th>FIB</th>
+            <th>PAR</th>
+            <th>RES_V</th>
+            <th>CASSE</th>
+            <th>F_EBR</th>
+            <th>TOTAL</th>
+            <th>Q_BON_MIR</th>
+            <th>Date</th>
+            <th>Pertes %</th>
+            <th>Rend. Mir %</th>
+            <th>Rend. Glob %</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tbody-lots">
+          <tr id="empty-row">
+            <td colspan="15" style="text-align:center; color:rgba(26,37,64,0.4); padding:24px;">
+              Aucun lot enregistré — commencez par saisir un lot ci-dessus
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Moyennes -->
+    <div id="moyennes-section" style="display:none;">
+      <div class="moyennes-grid" id="moyennes-grid"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const qt_theorique = {
+  "ZELVA 50ML": 196,
+  "ZELVA 10ML": 956,
+  "YPEVA 16ML": 301,
+  "YPEVA 4ML": 1162
+};
+
+let lots = [];
+
+// Charger les lots depuis la base de données au démarrage
+window.onload = async function() {
+  const res = await fetch('/api/lots');
+  lots = await res.json();
+  if (lots.length > 0) renderTableau();
+}
+
+function updateQt() { calcAuto(); }
+
+function calcAuto() {
+  const qu      = parseFloat(document.getElementById('qu_recue').value) || 0;
+  const fib     = parseFloat(document.getElementById('fib').value) || 0;
+  const par     = parseFloat(document.getElementById('par').value) || 0;
+  const res     = parseFloat(document.getElementById('res_v').value) || 0;
+  const cas     = parseFloat(document.getElementById('casse').value) || 0;
+  const feb     = parseFloat(document.getElementById('febr').value) || 0;
+  const produit = document.getElementById('produit').value;
+  const qt      = qt_theorique[produit] || 0;
+
+  const total     = fib + par + res + cas + feb;
+  const q_bon     = qu - total;
+  const pertes    = qu > 0 ? (total / qu * 100).toFixed(2) : '—';
+  const rend_mir  = qu > 0 ? (q_bon / qu * 100).toFixed(2) : '—';
+  const rend_glob = qt > 0 ? (q_bon / qt * 100).toFixed(2) : '—';
+
+  document.getElementById('total').value     = total;
+  document.getElementById('q_bon_mir').value = q_bon;
+  document.getElementById('pertes').value    = pertes !== '—' ? pertes + ' %' : '—';
+  document.getElementById('rend_mir').value  = rend_mir !== '—' ? rend_mir + ' %' : '—';
+  document.getElementById('rend_glob').value = rend_glob !== '—' ? rend_glob + ' %' : '—';
+}
+
+async function ajouterLot() {
+  const produit = document.getElementById('produit').value;
+  const num_lot = document.getElementById('num_lot').value;
+  const qu      = parseFloat(document.getElementById('qu_recue').value);
+  const fib     = parseFloat(document.getElementById('fib').value) || 0;
+  const par     = parseFloat(document.getElementById('par').value) || 0;
+  const res     = parseFloat(document.getElementById('res_v').value) || 0;
+  const cas     = parseFloat(document.getElementById('casse').value) || 0;
+  const feb     = parseFloat(document.getElementById('febr').value) || 0;
+  const date    = document.getElementById('date_rep').value;
+
+  if (!produit || !num_lot || !qu) {
+    alert('Veuillez remplir : Produit, Numéro de lot et Quantité reçue');
+    return;
+  }
+
+  const total     = fib + par + res + cas + feb;
+  const q_bon     = qu - total;
+  const qt        = qt_theorique[produit];
+  const pertes    = parseFloat((total / qu * 100).toFixed(2));
+  const rend_mir  = parseFloat((q_bon / qu * 100).toFixed(2));
+  const rend_glob = parseFloat((q_bon / qt * 100).toFixed(2));
+
+  const lot = { produit, num_lot, qu, fib, par, res, cas, feb, total, q_bon, date, pertes, rend_mir, rend_glob };
+
+  // Sauvegarder dans SQLite
+  const response = await fetch('/api/lots', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(lot)
+  });
+  const result = await response.json();
+  lot.id = result.id;
+
+  lots.push(lot);
+  renderTableau();
+  resetForm();
+}
+
+function renderTableau() {
+  const tbody = document.getElementById('tbody-lots');
+  const emptyRow = document.getElementById('empty-row');
+  if (emptyRow) emptyRow.remove();
+
+  tbody.innerHTML = lots.map((lot, i) => `
+    <tr>
+      <td>${lot.produit}</td>
+      <td>${lot.num_lot}</td>
+      <td>${lot.qu}</td>
+      <td>${lot.fib}</td>
+      <td>${lot.par}</td>
+      <td>${lot.res}</td>
+      <td>${lot.cas}</td>
+      <td>${lot.feb}</td>
+      <td><strong>${lot.total}</strong></td>
+      <td>${lot.q_bon}</td>
+      <td>${lot.date || '—'}</td>
+      <td class="${parseFloat(lot.pertes) > 6 ? 'val-rouge' : 'val-vert'}">${lot.pertes}%</td>
+      <td class="${parseFloat(lot.rend_mir) < 94 ? 'val-rouge' : 'val-vert'}">${lot.rend_mir}%</td>
+      <td class="${parseFloat(lot.rend_glob) < 90 ? 'val-rouge' : 'val-vert'}">${lot.rend_glob}%</td>
+      <td><button class="btn-suppr" onclick="supprimerLot(${lot.id}, ${i})">✕</button></td>
+    </tr>
+  `).join('');
+
+  calculerMoyennes();
+}
+
+async function supprimerLot(id, i) {
+  await fetch('/api/lots/' + id, { method: 'DELETE' });
+  lots.splice(i, 1);
+
+  if (lots.length === 0) {
+    document.getElementById('tbody-lots').innerHTML = `
+      <tr id="empty-row">
+        <td colspan="15" style="text-align:center; color:rgba(26,37,64,0.4); padding:24px;">
+          Aucun lot enregistré
+        </td>
+      </tr>`;
+    document.getElementById('moyennes-section').style.display = 'none';
+    return;
+  }
+  renderTableau();
+}
+
+function calculerMoyennes() {
+  if (lots.length === 0) return;
+
+  const produits = [...new Set(lots.map(l => l.produit))];
+  const section  = document.getElementById('moyennes-section');
+  const grid     = document.getElementById('moyennes-grid');
+  section.style.display = 'block';
+
+  grid.innerHTML = produits.map(p => {
+    const lotsP      = lots.filter(l => l.produit === p);
+    const moy_pertes = (lotsP.reduce((s,l) => s + parseFloat(l.pertes), 0) / lotsP.length).toFixed(2);
+    const moy_mir    = (lotsP.reduce((s,l) => s + parseFloat(l.rend_mir), 0) / lotsP.length).toFixed(2);
+    const moy_glob   = (lotsP.reduce((s,l) => s + parseFloat(l.rend_glob), 0) / lotsP.length).toFixed(2);
+    return `
+      <div class="moy-card">
+        <div class="moy-produit">${p}</div>
+        <div class="moy-row"><span>Lots</span><strong>${lotsP.length}</strong></div>
+        <div class="moy-row"><span>Pertes moy.</span><strong class="${parseFloat(moy_pertes)>6?'val-rouge':'val-vert'}">${moy_pertes}%</strong></div>
+        <div class="moy-row"><span>Rend. mirage moy.</span><strong class="${parseFloat(moy_mir)<94?'val-rouge':'val-vert'}">${moy_mir}%</strong></div>
+        <div class="moy-row"><span>Rend. global moy.</span><strong class="${parseFloat(moy_glob)<90?'val-rouge':'val-vert'}">${moy_glob}%</strong></div>
+      </div>`;
+  }).join('');
+}
+
+function resetForm() {
+  document.getElementById('produit').value   = '';
+  document.getElementById('num_lot').value   = '';
+  document.getElementById('qu_recue').value  = '';
+  document.getElementById('date_rep').value  = '';
+  ['fib','par','res_v','casse','febr'].forEach(id => document.getElementById(id).value = 0);
+  ['total','q_bon_mir','pertes','rend_mir','rend_glob'].forEach(id => document.getElementById(id).value = '');
+}
+
+function exportExcel() {
+  if (lots.length === 0) { alert('Aucun lot à exporter'); return; }
+
+  const headers = ['Produit','Lot','QU_RECUE','FIB','PAR','RES_V','CASSE','F_EBR','TOTAL','Q_BON_MIR','Date','Pertes %','Rend. Mir %','Rend. Glob %'];
+
+  let html = `
+    <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">
+    <head><meta charset="UTF-8"></head>
+    <body>
+    <table border="1" style="border-collapse:collapse; font-family:Calibri; font-size:11pt;">
+      <tr>
+        ${headers.map(h => `
+          <th style="background-color:#002060;color:#FFFFFF;font-weight:bold;padding:8px 12px;border:1px solid #AAAAAA;text-align:center;white-space:nowrap;">${h}</th>
+        `).join('')}
+      </tr>
+      ${lots.map((lot, i) => `
+        <tr style="background-color:${i % 2 === 0 ? '#E8EEF7' : '#FFFFFF'};">
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;font-weight:600;color:#002060;">${lot.produit}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;">${lot.num_lot}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;">${lot.qu}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;">${lot.fib}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;">${lot.par}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;">${lot.res}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;">${lot.cas}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;">${lot.feb}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;font-weight:bold;">${lot.total}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;">${lot.q_bon}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;">${lot.date || '—'}</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;font-weight:bold;color:${parseFloat(lot.pertes)>6?'#C62828':'#2E7D32'};">${lot.pertes}%</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;font-weight:bold;color:${parseFloat(lot.rend_mir)<94?'#C62828':'#2E7D32'};">${lot.rend_mir}%</td>
+          <td style="padding:6px 10px;border:1px solid #CCCCCC;text-align:center;font-weight:bold;color:${parseFloat(lot.rend_glob)<90?'#C62828':'#2E7D32'};">${lot.rend_glob}%</td>
+        </tr>
+      `).join('')}
+    </table>
+    </body></html>
+  `;
+
+  const blob = new Blob([html], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'lots_mirage.xls';
+  a.click();
+}
+</script>
+
+{% endblock %}

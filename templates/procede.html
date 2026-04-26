@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% set page = 'procede' %}
+{% set titre = 'Procédé de fabrication' %}
+
+{% block content %}
+
+<div class="section-label">Chapitre 3</div>
+<h1 class="section-title">Procédé de remplissage des produits Biocad</h1>
+
+<div class="procede-wrapper">
+
+  <!-- ÉTAPES VERTICALES -->
+  <div class="etapes-list">
+
+    <div class="etape active" onclick="showEtape(0)">
+      <div class="etape-num">01</div>
+      <div class="etape-info">
+        <div class="etape-title">Lavage & Stérilisation des flacons</div>
+        <div class="etape-sub">Four à chaleur sèche — 230°C</div>
+      </div>
+      <div class="etape-arrow">→</div>
+    </div>
+
+    <div class="etape" onclick="showEtape(1)">
+      <div class="etape-num">02</div>
+      <div class="etape-info">
+        <div class="etape-title">Stérilisation du matériel</div>
+        <div class="etape-sub">Autoclave — 122°C — 30 min</div>
+      </div>
+      <div class="etape-arrow">→</div>
+    </div>
+
+    <div class="etape" onclick="showEtape(2)">
+      <div class="etape-num">03</div>
+      <div class="etape-info">
+        <div class="etape-title">Préparation des poches</div>
+        <div class="etape-sub">Solution Biocad — Russie</div>
+      </div>
+      <div class="etape-arrow">→</div>
+    </div>
+
+    <div class="etape" onclick="showEtape(3)">
+      <div class="etape-num">04</div>
+      <div class="etape-info">
+        <div class="etape-title">Remplissage aseptique</div>
+        <div class="etape-sub">Machine de remplissage </div>
+      </div>
+      <div class="etape-arrow">→</div>
+    </div>
+
+    <div class="etape" onclick="showEtape(4)">
+      <div class="etape-num">05</div>
+      <div class="etape-info">
+        <div class="etape-title">Bouchage & Capsulage</div>
+        <div class="etape-sub">Bouchons butyle — Capsules aluminium</div>
+      </div>
+      <div class="etape-arrow">→</div>
+    </div>
+
+    <div class="etape" onclick="showEtape(5)">
+      <div class="etape-num">06</div>
+      <div class="etape-info">
+        <div class="etape-title">Mirage manuel</div>
+        <div class="etape-sub">Inspection visuelle — fond noir/blanc</div>
+      </div>
+      <div class="etape-arrow">→</div>
+    </div>
+
+    <div class="etape" onclick="showEtape(6)">
+      <div class="etape-num">07</div>
+      <div class="etape-info">
+        <div class="etape-title">Conditionnement</div>
+        <div class="etape-sub">Étiquetage — Mise en boîte</div>
+      </div>
+      <div class="etape-arrow">→</div>
+    </div>
+
+  </div>
+
+  <!-- DÉTAIL ÉTAPE -->
+  <div class="etape-detail">
+
+    <div class="detail-panel active" id="panel-0">
+      <div class="detail-tag">Étape 01</div>
+      <h2 class="detail-title">Lavage & Stérilisation des flacons</h2>
+      <div class="detail-cards">
+        <div class="detail-card">
+          <h4>Lavage</h4>
+          <p>Les flacons en verre type I transparents sont lavés sur la laveuse, puis placés sous flux laminaire dans des caissettes en acier inoxydable.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Four à chaleur sèche</h4>
+          <p>Cycle thermique : montée à 230°C (185 min) → palier 60 min → refroidissement contrôlé 85 min. Ventilateurs pour distribution homogène de la chaleur.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Charges par format</h4>
+          <p>YPEVA 4mL : ~7200 flacons — YPEVA 16mL : ~3600 — ZELVA 10mL : ~3400 — ZELVA 50mL : ~1200 flacons par chariot.</p>
+        </div>
+        <div class="detail-card highlight">
+          <h4>⚠ Point critique</h4>
+          <p>Les flacons restent ouverts pendant 85 min de refroidissement sous flux laminaire — source potentielle de contamination fibreuse (H6).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-panel" id="panel-1">
+      <div class="detail-tag">Étape 02</div>
+      <h2 class="detail-title">Stérilisation du matériel</h2>
+      <div class="detail-cards">
+        <div class="detail-card">
+          <h4>Autoclave vapeur saturée</h4>
+          <p>121-122°C pendant 30 min + 30 min de séchage. Vapeur filtrée à 2 bar. Stérilisation du matériel de la ligne Steriline.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Matériel stérilisé</h4>
+          <p>Tuyauteries, aiguilles de remplissage, raccords, collecteurs, guides de bouchons, pinces, galets, bacs inox.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Bouchons & Capsules</h4>
+          <p>Bouchons en sachets de 250 ou 500 unités. Capsules en sachets de 1000 unités. Jusqu'à 6000 bouchons + 6000 capsules par cycle.</p>
+        </div>
+        <div class="detail-card highlight">
+          <h4>⚠ Point critique</h4>
+          <p>20 torchons Polox inclus dans la charge autoclave → hydrolyse thermique intense du PET à 122°C → fibres fragilisées (H2).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-panel" id="panel-2">
+      <div class="detail-tag">Étape 03</div>
+      <h2 class="detail-title">Préparation des poches de solution</h2>
+      <div class="detail-cards">
+        <div class="detail-card">
+          <h4>Origine de la solution</h4>
+          <p>Préparée par Biocad en Russie — livrée en poches stériles prêtes à l'emploi. SOTHEMA réalise uniquement le conditionnement.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Formats des poches</h4>
+          <p>Poches de 5L pour YPEVA 4mL et 16mL — Poches de 10L pour ZELVA 10mL et 50mL.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Transfert contrôlé</h4>
+          <p>Désinfection alcool isopropylique → repos 15 min → retrait 1er emballage → 2ème désinfection → introduction zone aseptique.</p>
+        </div>
+        <div class="detail-card highlight">
+          <h4>⚠ Point critique</h4>
+          <p>ZELVA 50mL : volume élevé → plusieurs changements de poches par lot → manipulations aseptiques à risque près des flacons ouverts (HS1).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-panel" id="panel-3">
+      <div class="detail-tag">Étape 04</div>
+      <h2 class="detail-title">Remplissage aseptique</h2>
+      <div class="detail-cards">
+        <div class="detail-card">
+          <h4>Machine Steriline VFCM50</h4>
+          <p>Remplissage automatique précis. Principe "no vial, no fill, no stopper". Pilotage via écran opérateur informatisé.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Filtration stérilisante</h4>
+          <p>Filtre 0,2 µm entre la poche et les aiguilles. Pompes péristaltiques pour contrôle précis du débit. Élimine toute contamination microbiologique.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Zone aseptique</h4>
+          <p>3 opérateurs en rotation. Combinaisons stériles. Flux laminaires activés en permanence sur tous les postes.</p>
+        </div>
+        <div class="detail-card highlight">
+          <h4>⚠ Point critique</h4>
+          <p>ZELVA 50mL : temps de remplissage plus long par flacon → col ouvert plus longtemps sous les aiguilles → risque de capture de fibres (HS2).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-panel" id="panel-4">
+      <div class="detail-tag">Étape 05</div>
+      <h2 class="detail-title">Bouchage & Capsulage</h2>
+      <div class="detail-cards">
+        <div class="detail-card">
+          <h4>Bouchonnage automatique</h4>
+          <p>Bouchons en butyle appliqués automatiquement par la Steriline à la sortie du poste de remplissage.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Capsulage aluminium</h4>
+          <p>Capsules en aluminium sertissables appliquées pour assurer l'inviolabilité du flacon.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Mise en caissettes</h4>
+          <p>Flacons bouchés et capsulés disposés dans des caissettes inox stériles, puis transférés vers la zone de réception.</p>
+        </div>
+        <div class="detail-card highlight">
+          <h4>⚠ Point critique</h4>
+          <p>Fragments cellulosiques des sachets stérilisables déposés sur les bouchons → introduits dans les flacons lors du bouchonnage automatique (H4).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-panel" id="panel-5">
+      <div class="detail-tag">Étape 06 — Étape étudiée</div>
+      <h2 class="detail-title">Mirage manuel</h2>
+      <div class="detail-cards">
+        <div class="detail-card">
+          <h4>Inspection visuelle</h4>
+          <p>Chaque flacon est observé devant fond noir et fond blanc. Légère agitation pour mettre la solution en mouvement et révéler les particules.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Défauts détectés</h4>
+          <p>Fibres (69,67%) — Particules (26,71%) — Résidus de verre (3,62%). Les fibres constituent le défaut majoritaire.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Mirage statistique</h4>
+          <p>Après inspection d'une caissette, réinspection d'un échantillon par un autre opérateur pour limiter les erreurs et améliorer la fiabilité.</p>
+        </div>
+        <div class="detail-card highlight">
+          <h4>⚠ Problème identifié</h4>
+          <p>ZELVA 50mL : 9,18% de pertes — YPEVA 4mL : 1,49%. Les fibres proviennent exclusivement de l'environnement de production (preuve filtration 0,2µm).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-panel" id="panel-6">
+      <div class="detail-tag">Étape 07</div>
+      <h2 class="detail-title">Conditionnement</h2>
+      <div class="detail-cards">
+        <div class="detail-card">
+          <h4>Opérations</h4>
+          <p>Étiquetage des flacons — mise en boîte — ajout des notices d'utilisation — conditionnement dans des cartons de transport.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Libération AQ</h4>
+          <p>Les produits conditionnés sont transférés vers la zone de stockage en attente de libération par le service Assurance Qualité.</p>
+        </div>
+        <div class="detail-card">
+          <h4>Conservation</h4>
+          <p>Stockage en chambre froide entre 2°C et 8°C en attente des étapes ultérieures du procédé de fabrication.</p>
+        </div>
+        <div class="detail-card highlight">
+          <h4>Traçabilité</h4>
+          <p>Les unités rejetées au mirage sont comptabilisées et enregistrées dans les documents de suivi de production pour assurer la traçabilité complète.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function showEtape(index) {
+  document.querySelectorAll('.etape').forEach((e, i) => {
+    e.classList.toggle('active', i === index);
+  });
+  document.querySelectorAll('.detail-panel').forEach((p, i) => {
+    p.classList.toggle('active', i === index);
+  });
+}
+</script>
+
+{% endblock %}
