@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
 :root {
   --navy: #001845;
   --blue: #002060;
@@ -137,7 +142,7 @@ main {
 
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(48px, 7vw, 80px);
+  font-size: clamp(36px, 5vw, 72px);
   font-weight: 900;
   line-height: 1.05;
   margin-bottom: 20px;
@@ -149,7 +154,7 @@ main {
 }
 
 .hero-subtitle {
-  font-size: 18px;
+  font-size: 16px;
   color: rgba(26,37,64,0.55);
   margin-bottom: 56px;
   font-weight: 300;
@@ -174,17 +179,35 @@ main {
 }
 
 .hero-info-item span {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--blue);
 }
 
-/* ── CARDS ── */
+/* ── SECTION LABELS & TITLES (une seule définition) ── */
+.section-label {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 900;
+  margin-bottom: 28px;
+  line-height: 1.1;
+  color: var(--blue);
+}
+
+/* ── CARDS (une seule définition) ── */
 .card {
   background: rgba(255,255,255,0.8);
   border: 1px solid rgba(0,32,96,0.08);
-  border-radius: 12px;
-  padding: 24px;
+  border-radius: 14px;
+  padding: 28px;
   transition: border-color 0.3s, background 0.3s;
 }
 
@@ -195,19 +218,20 @@ main {
 
 .card h3 {
   font-size: 13px;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   color: var(--gold);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .card p {
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(26,37,64,0.75);
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
-/* ── GRILLE ── */
+/* ── GRILLE (une seule définition) ── */
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -215,25 +239,7 @@ main {
   margin-top: 24px;
 }
 
-/* ── TITRES SECTIONS ── */
-.section-label {
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 4vw, 42px);
-  font-weight: 700;
-  margin-bottom: 28px;
-  line-height: 1.2;
-  color: var(--blue);
-}
-
-/* ── STATS ── */
+/* ── STATS (une seule définition) ── */
 .stat-row {
   display: flex;
   gap: 20px;
@@ -246,102 +252,28 @@ main {
   min-width: 120px;
   background: rgba(13,115,119,0.08);
   border: 1px solid rgba(13,115,119,0.25);
-  border-radius: 10px;
-  padding: 18px;
+  border-radius: 12px;
+  padding: 20px;
   text-align: center;
 }
 
 .stat-box .val {
   font-family: 'Playfair Display', serif;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 900;
   color: var(--blue);
 }
 
 .stat-box .lbl {
-  font-size: 11px;
-  color: rgba(26,37,64,0.5);
-  margin-top: 4px;
-}
-/* ── INTRODUCTION ── */
-.section-label {
-  font-size: 14px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 16px;
-}
-
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(42px, 6vw, 70px);
-  font-weight: 900;
-  margin-bottom: 40px;
-  line-height: 1.05;
-  color: var(--blue);
-}
-
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  margin-top: 24px;
-}
-
-.card {
-  background: rgba(255,255,255,0.8);
-  border: 1px solid rgba(0,32,96,0.08);
-  border-radius: 16px;
-  padding: 32px;
-  transition: border-color 0.3s, background 0.3s;
-}
-
-.card:hover {
-  background: white;
-  border-color: rgba(201,168,76,0.4);
-}
-
-.card h3 {
-  font-size: 14px;
-  letter-spacing: 1.5px;
-  color: var(--gold);
-  margin-bottom: 14px;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.card p {
-  font-size: 16px;
-  color: rgba(26,37,64,0.75);
-  line-height: 1.8;
-}
-
-.stat-box .val {
-  font-family: 'Playfair Display', serif;
-  font-size: 38px;
-  font-weight: 900;
-  color: var(--blue);
-}
-
-.stat-box .lbl {
-  font-size: 13px;
+  font-size: 12px;
   color: rgba(26,37,64,0.5);
   margin-top: 6px;
 }
 
-.stat-box {
-  flex: 1;
-  min-width: 120px;
-  background: rgba(13,115,119,0.08);
-  border: 1px solid rgba(13,115,119,0.25);
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
-}
 /* ── PROBLÉMATIQUE ── */
 .prob-question {
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: 18px;
   font-style: italic;
   color: var(--blue);
   border-left: 4px solid var(--gold);
@@ -351,26 +283,28 @@ main {
   margin-bottom: 36px;
   line-height: 1.7;
 }
+
 /* ── QQOQCP CARDS ── */
 .content-grid .card h3 {
-  font-size: 22px;
+  font-size: 18px;
   letter-spacing: 1px;
   color: var(--gold);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   text-transform: uppercase;
   font-weight: 700;
 }
 
 .content-grid .card p {
-  font-size: 18px;
+  font-size: 15px;
   color: rgba(26,37,64,0.8);
   line-height: 1.8;
 }
 
 .content-grid .card {
-  padding: 36px;
-  border-radius: 16px;
+  padding: 28px;
+  border-radius: 14px;
 }
+
 /* ── PROCÉDÉ ── */
 .procede-wrapper {
   display: grid;
@@ -460,7 +394,7 @@ main {
 }
 
 .detail-tag {
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
@@ -469,10 +403,10 @@ main {
 
 .detail-title {
   font-family: 'Playfair Display', serif;
-  font-size: 48px;
+  font-size: clamp(28px, 3.5vw, 44px);
   font-weight: 700;
   color: var(--blue);
-  margin-bottom: 38px;
+  margin-bottom: 28px;
   line-height: 1.2;
 }
 
@@ -486,7 +420,7 @@ main {
   background: rgba(255,255,255,0.8);
   border: 1px solid rgba(0,32,96,0.08);
   border-radius: 14px;
-  padding: 28px;
+  padding: 24px;
   transition: all 0.2s;
 }
 
@@ -496,16 +430,16 @@ main {
 }
 
 .detail-card h4 {
-  font-size: 18px;
-  font-weight: 00;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--blue);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .detail-card p {
-  font-size: 18px;
+  font-size: 15px;
   color: rgba(26,37,64,0.75);
   line-height: 1.8;
 }
@@ -518,6 +452,7 @@ main {
 .detail-card.highlight h4 {
   color: var(--gold);
 }
+
 /* ── MÉTHODOLOGIE DMAIC ── */
 .dmaic-wrapper {
   display: grid;
@@ -614,7 +549,7 @@ main {
 
 .panel-title {
   font-family: 'Playfair Display', serif;
-  font-size: 36px;
+  font-size: clamp(22px, 3vw, 36px);
   font-weight: 700;
   color: var(--blue);
   margin-bottom: 24px;
@@ -762,9 +697,10 @@ main {
   color: rgba(26,37,64,0.8);
   line-height: 1.5;
 }
+
 /* ── GRAPHES ── */
 .panel-intro {
-  font-size: 15px;
+  font-size: 14px;
   color: rgba(26,37,64,0.75);
   line-height: 1.8;
   margin-bottom: 28px;
@@ -819,6 +755,7 @@ main {
   border-radius: 8px;
   border: 1px solid rgba(0,32,96,0.06);
 }
+
 /* ── INTERPRÉTATION ── */
 .interp-btn {
   margin-top: 12px;
@@ -859,6 +796,7 @@ main {
   line-height: 1.7;
   animation: fadeIn 0.3s ease;
 }
+
 /* ── ANALYZE ── */
 .analyse-section {
   margin-bottom: 40px;
@@ -866,7 +804,7 @@ main {
 
 .analyse-titre {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--blue);
   margin-bottom: 20px;
@@ -889,7 +827,7 @@ main {
 
 .hyp-sous-titre {
   font-family: 'Playfair Display', serif;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--blue);
   margin: 28px 0 16px 0;
@@ -969,6 +907,7 @@ main {
 .hyp-panel.active {
   display: block;
 }
+
 /* ── CALCULS ── */
 .calculs-wrapper {
   display: flex;
