@@ -112,9 +112,6 @@ main {
   z-index: 1;
   min-height: 100vh;
   padding: 100px 60px 60px;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* ── HERO ── */
