@@ -20,34 +20,47 @@
   {% endwith %}
 
   <form method="POST" action="/signup">
+
     <div class="form-group" style="margin-bottom: 16px;">
       <label>Nom</label>
       <input type="text" name="nom" placeholder="Votre nom" required
              style="width:100%; padding:10px 14px; border:1px solid rgba(0,32,96,0.15); border-radius:8px; font-size:14px;"/>
     </div>
+
     <div class="form-group" style="margin-bottom: 16px;">
       <label>Prénom</label>
       <input type="text" name="prenom" placeholder="Votre prénom" required
              style="width:100%; padding:10px 14px; border:1px solid rgba(0,32,96,0.15); border-radius:8px; font-size:14px;"/>
     </div>
+
     <div class="form-group" style="margin-bottom: 16px;">
       <label>Poste</label>
       <input type="text" name="poste" placeholder="Ex: Opérateur mirage" required
              style="width:100%; padding:10px 14px; border:1px solid rgba(0,32,96,0.15); border-radius:8px; font-size:14px;"/>
     </div>
+
     <div class="form-group" style="margin-bottom: 16px;">
       <label>Email</label>
       <input type="email" name="email" placeholder="votre@email.com" required
              style="width:100%; padding:10px 14px; border:1px solid rgba(0,32,96,0.15); border-radius:8px; font-size:14px;"/>
     </div>
-    <div class="form-group" style="margin-bottom: 24px;">
+
+    <div class="form-group" style="margin-bottom: 16px;">
       <label>Mot de passe</label>
       <input type="password" name="password" placeholder="Créez un mot de passe" required
              style="width:100%; padding:10px 14px; border:1px solid rgba(0,32,96,0.15); border-radius:8px; font-size:14px;"/>
     </div>
+
+    <div class="form-group" style="margin-bottom: 24px;">
+      <label>Code d'invitation</label>
+      <input type="text" name="code" placeholder="Entrez le code d'invitation" required
+             style="width:100%; padding:10px 14px; border:1px solid rgba(0,32,96,0.15); border-radius:8px; font-size:14px;"/>
+    </div>
+
     <button type="submit" class="btn-ajouter" style="width:100%;">
       S'inscrire
     </button>
+
   </form>
 
   <p style="text-align:center; margin-top:20px; font-size:14px; color:rgba(26,37,64,0.6);">

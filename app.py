@@ -29,6 +29,9 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
+# ── Code d'invitation ──
+CODE_INVITATION = 'PertesBiocad2026'
+
 # ── Modèle User ──
 class User(UserMixin, db.Model):
     id        = db.Column(db.Integer, primary_key=True)
@@ -70,11 +73,19 @@ def signup():
         poste  = request.form['poste']
         email  = request.form['email']
         mdp    = request.form['password']
+        code   = request.form['code']
 
+        # Vérification code d'invitation
+        if code != CODE_INVITATION:
+            flash('Code d\'invitation invalide.', 'error')
+            return redirect(url_for('signup'))
+
+        # Vérification email existant
         if User.query.filter_by(email=email).first():
             flash('Email déjà utilisé.', 'error')
             return redirect(url_for('signup'))
 
+        # Création utilisateur
         user = User(
             nom=nom, prenom=prenom, poste=poste,
             email=email,
@@ -83,15 +94,16 @@ def signup():
         db.session.add(user)
         db.session.commit()
 
+        # Envoi email de confirmation
         token = s.dumps(email, salt='email-confirm')
         lien  = url_for('confirm_email', token=token, _external=True)
         msg   = Message('Confirmation de votre compte — PFE SOTHEMA',
                         sender='saad.jalaledine03@gmail.com',
                         recipients=[email])
-        msg.body = f'Bonjour {prenom},\n\nCliquez sur ce lien pour confirmer votre compte :\n{lien}\n\nCe lien expire dans 1 heure.'
+        msg.body = f'Bonjour {prenom},\n\nCliquez sur ce lien pour confirmer votre compte :\n{lien}\n\nCe lien expire dans 1 heure.\n\nCordialement,\nPFE SOTHEMA'
         mail.send(msg)
 
-        flash('Un email de confirmation a été envoyé.', 'success')
+        flash('Inscription réussie ! Un email de confirmation a été envoyé.', 'success')
         return redirect(url_for('login'))
     return render_template('signup.html')
 
@@ -122,7 +134,7 @@ def login():
             return redirect(url_for('login'))
 
         if not user.confirmed:
-            flash('Veuillez confirmer votre email.', 'error')
+            flash('Veuillez confirmer votre email avant de vous connecter.', 'error')
             return redirect(url_for('login'))
 
         login_user(user)
