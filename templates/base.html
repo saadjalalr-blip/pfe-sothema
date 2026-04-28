@@ -17,7 +17,11 @@
       <div class="logo-divider"></div>
       <div class="nav-title">SOTHEMA</div>
     </div>
-    <div class="nav-links">
+
+    <!-- Bouton hamburger — visible seulement sur mobile -->
+    <button class="nav-burger" onclick="toggleMenu()">☰</button>
+
+    <div class="nav-links" id="nav-links">
       <a href="/" class="{{ 'active' if page == 'accueil' }}">Accueil</a>
       <a href="/introduction" class="{{ 'active' if page == 'introduction' }}">Introduction</a>
       <a href="/problematique" class="{{ 'active' if page == 'problematique' }}">Problématique</a>
@@ -39,6 +43,13 @@
   </main>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('open');
+    }
+  </script>
 
 </body>
 </html>
