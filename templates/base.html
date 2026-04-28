@@ -24,6 +24,13 @@
       <a href="/procede" class="{{ 'active' if page == 'procede' }}">Procédé</a>
       <a href="/methodologie" class="{{ 'active' if page == 'methodologie' }}">Méthodologie</a>
       <a href="/calculs" class="{{ 'active' if page == 'calculs' }}">Calculs</a>
+
+      {% if current_user.is_authenticated %}
+      <div class="nav-user">
+        <span class="nav-username">👤 {{ current_user.prenom }} {{ current_user.nom }}</span>
+        <a href="/logout" class="nav-logout">Déconnexion</a>
+      </div>
+      {% endif %}
     </div>
   </nav>
 

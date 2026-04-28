@@ -1126,3 +1126,32 @@ main {
 }
 
 .moy-row span { color: rgba(26,37,64,0.6); }
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-left: 1px solid rgba(0,32,96,0.15);
+  padding-left: 20px;
+  margin-left: 8px;
+}
+
+.nav-username {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.nav-logout {
+  font-size: 12px;
+  padding: 6px 14px;
+  border: 1px solid rgba(211,47,47,0.4);
+  border-radius: 6px;
+  color: #D32F2F;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.nav-logout:hover {
+  background: rgba(211,47,47,0.08);
+  color: #D32F2F !important;
+}
