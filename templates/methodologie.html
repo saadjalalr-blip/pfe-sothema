@@ -356,6 +356,58 @@ Ces résultats indiquent que l’amélioration du contrôle des fibres dans le p
     <div class="hyp-panel" id="h9"><img src="{{ url_for('static', filename='h9.png') }}" alt="H9" class="graphe-img"/></div>
     <div class="hyp-panel" id="h10"><img src="{{ url_for('static', filename='h10.png') }}" alt="H10" class="graphe-img"/></div>
 
+    <!-- ══ CARACTÉRISATION ══ -->
+<div class="analyse-section">
+  <h3 class="analyse-titre">Caractérisation préliminaire des fibres isolées</h3>
+
+  <p style="font-size:15px; color:rgba(26,37,64,0.75); line-height:1.8; margin-bottom:24px;">
+    Afin de compléter l'analyse causale développée dans les sections précédentes et d'apporter une preuve expérimentale directe de la présence de fibres dans les flacons rejetés lors du mirage, une caractérisation préliminaire a été réalisée au niveau du laboratoire de physicochimie de SOTHEMA. Cette démarche s'inscrit dans la continuité des hypothèses H1 à H10 identifiées, qui attribuent les rejets observés à une contamination fibreuse d'origine environnementale.
+  </p>
+
+  <!-- Matériel et protocole -->
+  <h4 class="hyp-sous-titre">Matériel et protocole</h4>
+
+  <div class="pareto-img-box" style="margin-bottom:16px;">
+    <img src="{{ url_for('static', filename='montage_filtration.png') }}" alt="Montage filtration" class="graphe-img"/>
+    <button class="interp-btn" onclick="toggleInterp('interp-montage', this)">Voir l'interprétation</button>
+    <div class="interp-box" id="interp-montage">
+      Deux flacons des produits Biocad (YPEVA 16mL) présentant des fibres détectées lors de l'inspection visuelle au mirage ont été sélectionnés comme échantillons représentatifs. Le contenu de chaque flacon a été soumis à une filtration sous vide à travers une membrane filtrante de 0,45μm, permettant de retenir les fibres en suspension tout en laissant passer la solution médicamenteuse. Après filtration, les membranes récupérées ont été déposées dans des boîtes de Pétri et laissées à sécher à température ambiante, puis observées sous microscope optique.
+    </div>
+  </div>
+
+  <!-- Résultats et observations -->
+  <h4 class="hyp-sous-titre">Résultats et observations</h4>
+
+  <div class="pareto-img-box">
+    <p style="font-size:14px; color:rgba(26,37,64,0.75); line-height:1.8; margin-bottom:12px;">
+      L'observation au microscope optique des membranes filtrantes a révélé la présence de fibres sur une membrane issue des flacons rejetés. La fibre observée présente une morphologie allongée et fine, caractéristique des fibres textiles. La longueur des fibres observées est variable, allant de quelques centaines de micromètres à plusieurs millimètres, ce qui est cohérent avec les dimensions caractéristiques des fibres textiles libérées par abrasion mécanique.
+    </p>
+
+    <button class="interp-btn" onclick="toggleInterp('interp-caract', this)">Voir l'interprétation — coloration</button>
+    <div class="interp-box" id="interp-caract">
+      Concernant la coloration observée : Les fibres isolées présentent une teinte bleutée sous observation microscopique. Cette coloration constitue un indicateur préliminaire important — les fibres PET des torchons Polox 1200a étant naturellement blanches, une fibre bleue oriente l'identification vers deux sources potentielles identifiées dans cette étude : d'une part les torchons de couleur bleue utilisés pour le nettoyage des murs dont l'introduction en zone aseptique est interdite et a été observée lors du Gemba Walk (H3) — et d'autre part la combinaison stérile des opérateurs, dont l'abrasion lors des mouvements peut libérer des microfibrilles colorées (H5).
+    </div>
+
+    <button class="interp-btn" onclick="toggleInterp('interp-photos', this)" style="margin-top:8px;">Voir les photos</button>
+    <div class="interp-box" id="interp-photos">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:8px;">
+        <div>
+          <img src="{{ url_for('static', filename='photo_microscope.png') }}" alt="Microscope" class="graphe-img"/>
+          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Observation au microscope optique</p>
+        </div>
+        <div>
+          <img src="{{ url_for('static', filename='photo_petri.png') }}" alt="Boîte Pétri" class="graphe-img"/>
+          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Membrane dans boîte de Pétri</p>
+        </div>
+        <div>
+          <img src="{{ url_for('static', filename='photo_fibre.png') }}" alt="Fibre détectée" class="graphe-img"/>
+          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Fibre détectée au microscope</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 <!-- ══ 5 POURQUOI ══ -->
   <div class="analyse-section">
     <h3 class="analyse-titre">Analyse des causes racines — Méthode des 5 Pourquoi</h3>
