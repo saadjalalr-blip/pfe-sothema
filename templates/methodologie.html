@@ -406,32 +406,65 @@
             </div>
 
             <!-- DOPAGE CONTRÔLÉ -->
-            <div class="analyse-section">
-              <h4 class="hyp-sous-titre">Identification de la source des fibres par dopage contrôlé et comparaison morphologique</h4>
-              <div class="pareto-img-box">
-                <p style="font-size:14px; color:rgba(26,37,64,0.75); line-height:1.8; margin-bottom:12px;">
-                  Afin de vérifier la correspondance entre les fibres retrouvées en production et les matériaux suspects, un protocole de dopage contrôlé a été mis en place. Quatre flacons Biocad rejetés au mirage pour des défauts sans lien avec les fibres ont été sélectionnés comme supports vierges, puis décapsulés sous hotte à flux laminaire pour reproduire les conditions aseptiques. Chacun d'eux a été intentionnellement dopé avec six fibres prélevées sur un matériau suspect distinct : torchon bleu foncé, torchon bleu ciel, torchon blanc Polox 1200a, et combinaison stérile. Ces fibres de référence serviront ensuite à une comparaison morphologique et colorimétrique avec celles isolées dans les flacons rejetés en production.
-                </p>
-                <button class="interp-btn" onclick="toggleInterp('interp-dopage', this)">Voir les photos</button>
-                <div class="interp-box" id="interp-dopage">
-                  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:8px;">
-                    <div>
-                      <img src="{{ url_for('static', filename='p1.png') }}" alt="Dopage 1" class="graphe-img"/>
-                    </div>
-                    <div>
-                      <img src="{{ url_for('static', filename='p2.png') }}" alt="Dopage 2" class="graphe-img"/>
-                    </div>
-                    <div>
-                      <img src="{{ url_for('static', filename='p3.png') }}" alt="Dopage 3" class="graphe-img"/>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+<div class="analyse-section">
+  <h4 class="hyp-sous-titre">Identification de la source des fibres par dopage contrôlé et comparaison morphologique</h4>
+  <div class="pareto-img-box">
+    <p style="font-size:14px; color:rgba(26,37,64,0.75); line-height:1.8; margin-bottom:12px;">
+      Afin de vérifier la correspondance entre les fibres retrouvées en production et les matériaux suspects, un protocole de dopage contrôlé a été mis en place. Quatre flacons Biocad rejetés au mirage pour des défauts sans lien avec les fibres ont été sélectionnés comme supports vierges, puis décapsulés sous hotte à flux laminaire pour reproduire les conditions aseptiques. Chacun d'eux a été intentionnellement dopé avec six fibres prélevées sur un matériau suspect distinct : torchon bleu foncé, torchon bleu ciel, torchon blanc Polox 1200a, et combinaison stérile. Ces fibres de référence serviront ensuite à une comparaison morphologique et colorimétrique avec celles isolées dans les flacons rejetés en production.
+    </p>
 
-          </div>
+    <button class="interp-btn" onclick="toggleInterp('interp-dopage', this)">Voir les photos</button>
+    <div class="interp-box" id="interp-dopage">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:8px;">
+        <div><img src="{{ url_for('static', filename='p1.png') }}" alt="Dopage 1" class="graphe-img"/></div>
+        <div><img src="{{ url_for('static', filename='p2.png') }}" alt="Dopage 2" class="graphe-img"/></div>
+        <div><img src="{{ url_for('static', filename='p3.png') }}" alt="Dopage 3" class="graphe-img"/></div>
+      </div>
+    </div>
+
+    <p style="font-size:14px; color:rgba(26,37,64,0.75); line-height:1.8; margin-top:16px; margin-bottom:12px;">
+      Les flacons ont été filtrés sous vide (membrane 0,45µm), puis les fibres collectées ont été observées au microscope et comparées par couleur et morphologie aux fibres des flacons rejetés au mirage, afin d'identifier la source de la contamination.
+    </p>
+
+    <button class="interp-btn" onclick="toggleInterp('interp-dopage-photos', this)">Voir les photos</button>
+    <div class="interp-box" id="interp-dopage-photos">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:8px;">
+        <div>
+          <img src="{{ url_for('static', filename='combinaison.png') }}" alt="Combinaison" class="graphe-img"/>
+          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Combinaison</p>
         </div>
+        <div>
+          <img src="{{ url_for('static', filename='torchon bleu.png') }}" alt="Torchon bleu" class="graphe-img"/>
+          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Torchon bleu</p>
+        </div>
+        <div>
+          <img src="{{ url_for('static', filename='torchon bleu ciel.png') }}" alt="Torchon bleu ciel" class="graphe-img"/>
+          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Torchon bleu ciel</p>
+        </div>
+        <div>
+          <img src="{{ url_for('static', filename='papier filtre.png') }}" alt="Papier filtre" class="graphe-img"/>
+          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Papier filtre</p>
+        </div>
+        <div>
+          <img src="{{ url_for('static', filename='torchon blanc.png') }}" alt="Torchon blanc" class="graphe-img"/>
+          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Torchon blanc</p>
+        </div>
+      </div>
+    </div>
 
+    <button class="interp-btn" onclick="toggleInterp('interp-dopage-concl', this)" style="margin-top:8px;">Voir l'interprétation</button>
+    <div class="interp-box" id="interp-dopage-concl">
+      <p style="font-size:13px; color:rgba(26,37,64,0.8); line-height:1.8;">
+        La comparaison par dopage contrôlé révèle que les fibres des torchons blancs Polox 1200a, une fois immergées dans la solution médicamenteuse Biocad, changent de couleur passant du blanc vers un bleuté à grisâtre ce qui correspond exactement à la teinte observée sur les fibres isolées dans les flacons rejetés au mirage.
+        <br><br>
+        Ce changement colorimétrique explique pourquoi l'identification préliminaire avait orienté vers les torchons bleus (H3) ou les combinaisons stériles (H5) : ce n'était pas la couleur naturelle des fibres, mais le résultat d'une interaction avec les composants de la solution.
+        <br><br>
+        Ce résultat constitue une preuve expérimentale forte que la source principale de contamination est le torchon Polox 1200a, confirmant les hypothèses H1 et H2.
+      </p>
+    </div>
+
+  </div>
+</div>
         <!-- 5 POURQUOI -->
         <div class="analyse-section">
           <h3 class="analyse-titre">Analyse des causes racines — Méthode des 5 Pourquoi</h3>
@@ -446,7 +479,7 @@
               <img src="{{ url_for('static', filename='5pourquoi.png') }}" alt="5 Pourquoi" class="graphe-img"/>
               <button class="interp-btn" onclick="toggleInterp('interp-5why', this)">Voir l'interprétation</button>
               <div class="interp-box" id="interp-5why">
-                La cause racine des pertes au mirage est une contamination fibreuse environnementale confirmée expérimentalement — fibres bleues lisses prédominantes dans 25 flacons analysés orientant vers les torchons bleus (H3) et la sous-tenue bleue des opérateurs (H5), et fibre blanche isolée dans un flacon ZELVA 50ML orientant vers les torchons Polox (H1) — aggravée par l'absence de barrières techniques automatiques permettant de détecter et de bloquer l'introduction de matériaux non conformes en zone aseptique. Cette analyse oriente directement les actions correctives de la phase Improve vers la suppression de ces sources fibreuses identifiées et la mise en place de systèmes de détection automatique.
+                      La cause racine des pertes au mirage est la libération de fibres PET par les torchons Polox 1200a dans l'environnement de production aseptique — confirmée expérimentalement par le protocole de dopage contrôlé — aggravée par leur dégradation chimique progressive due à la transestérification par l'alcool éthylique à 70° et à l'hydrolyse thermique à 122°C. Cette analyse oriente directement les actions correctives de la phase Improve vers le remplacement des torchons Polox par des lingettes stériles certifiées non fibreuses et la substitution de l'alcool éthylique par l'IPA stérile à 70°. 
               </div>
             </div>
           </div>
@@ -485,14 +518,6 @@
         <button class="interp-btn" onclick="toggleInterp('interp-C3', this)">Voir la photo</button>
         <div class="interp-box" id="interp-C3">
           <img src="{{ url_for('static', filename='C3.png') }}" alt="Caméras surveillance" class="graphe-img"/>
-        </div>
-      </div>
-
-      <h4 class="hyp-sous-titre">Capteur de couleur pour détection automatique des torchons bleus en zone aseptique</h4>
-      <div class="pareto-img-box" style="margin-bottom:16px;">
-        <button class="interp-btn" onclick="toggleInterp('interp-C4', this)">Voir la photo</button>
-        <div class="interp-box" id="interp-C4">
-          <img src="{{ url_for('static', filename='C4.png') }}" alt="Capteur couleur" class="graphe-img"/>
         </div>
       </div>
 
