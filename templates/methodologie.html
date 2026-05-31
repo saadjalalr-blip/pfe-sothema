@@ -273,9 +273,12 @@
       </div>
 
       <!-- ISHIKAWA -->
-      <div class="analyse-section">
-        <h3 class="analyse-titre">Diagramme Ishikawa</h3>
-        <img src="{{ url_for('static', filename='ishikawa.png') }}" alt="Ishikawa" class="graphe-img"/>
+      <h3 class="hyp-sous-titre">Diagramme Ishikawa</h3>
+      <div class="pareto-img-box" style="margin-bottom:16px;">
+        <button class="interp-btn" onclick="toggleInterp('interp-ishi', this)">Voir la photo</button>
+        <div class="interp-box" id="interp-ishi">
+          <img src="{{ url_for('static', filename='ishikawa.png') }}" alt="Ishikawa" class="graphe-img"/>
+        </div>
       </div>
 
       <!-- HYPOTHÈSES -->
@@ -319,10 +322,6 @@
             <div class="hyp-num">H6</div>
             <div class="hyp-name">Arrêts techniques machine Steriline</div>
           </div>
-          <div class="hyp-card" onclick="toggleHyp('hyp7', this)">
-            <div class="hyp-num">H7</div>
-            <div class="hyp-name">Variabilité des pratiques opératoires selon les équipes</div>
-          </div>
         </div>
         <div class="hyp-panel" id="hyp1"><img src="{{ url_for('static', filename='h1.png') }}" alt="H1" class="graphe-img"/></div>
         <div class="hyp-panel" id="hyp2"><img src="{{ url_for('static', filename='h2.png') }}" alt="H2" class="graphe-img"/></div>
@@ -330,10 +329,14 @@
         <div class="hyp-panel" id="hyp4"><img src="{{ url_for('static', filename='h4.png') }}" alt="H4" class="graphe-img"/></div>
         <div class="hyp-panel" id="hyp5"><img src="{{ url_for('static', filename='h5.png') }}" alt="H5" class="graphe-img"/></div>
         <div class="hyp-panel" id="hyp6"><img src="{{ url_for('static', filename='h6.png') }}" alt="H6" class="graphe-img"/></div>
-        <div class="hyp-panel" id="hyp7"><img src="{{ url_for('static', filename='h7.png') }}" alt="H7" class="graphe-img"/></div>
-
+      
         <h4 class="hyp-sous-titre">Hypothèses spécifiques — Produit le plus critique : ZELVA 50ML</h4>
         <div class="hyp-grid">
+
+        <div class="hyp-card zelva" onclick="toggleHyp('h7', this)">
+            <div class="hyp-num">H7</div>
+            <div class="hyp-name">Variabilité des pratiques opératoires selon les équipes</div>
+          </div>
           <div class="hyp-card zelva" onclick="toggleHyp('h8', this)">
             <div class="hyp-num">H8</div>
             <div class="hyp-name">Connexions multiples de poches</div>
@@ -342,14 +345,11 @@
             <div class="hyp-num">H9</div>
             <div class="hyp-name">Temps de remplissage plus long</div>
           </div>
-          <div class="hyp-card zelva" onclick="toggleHyp('h10', this)">
-            <div class="hyp-num">H10</div>
-            <div class="hyp-name">Transfert fibres couvercle caissettes</div>
-          </div>
         </div>
+        <div class="hyp-panel" id="h7"><img src="{{ url_for('static', filename='h7.png') }}" alt="H7" class="graphe-img"/></div>
         <div class="hyp-panel" id="h8"><img src="{{ url_for('static', filename='h8.png') }}" alt="H8" class="graphe-img"/></div>
         <div class="hyp-panel" id="h9"><img src="{{ url_for('static', filename='h9.png') }}" alt="H9" class="graphe-img"/></div>
-        <div class="hyp-panel" id="h10"><img src="{{ url_for('static', filename='h10.png') }}" alt="H10" class="graphe-img"/></div>
+        
 
         <!-- CARACTÉRISATION -->
         <div class="analyse-section">
@@ -406,85 +406,87 @@
             </div>
 
             <!-- DOPAGE CONTRÔLÉ -->
-<div class="analyse-section">
-  <h4 class="hyp-sous-titre">Identification de la source des fibres par dopage contrôlé et comparaison morphologique</h4>
-  <div class="pareto-img-box">
-    <p style="font-size:14px; color:rgba(26,37,64,0.75); line-height:1.8; margin-bottom:12px;">
-      Afin de vérifier la correspondance entre les fibres retrouvées en production et les matériaux suspects, un protocole de dopage contrôlé a été mis en place. Quatre flacons Biocad rejetés au mirage pour des défauts sans lien avec les fibres ont été sélectionnés comme supports vierges, puis décapsulés sous hotte à flux laminaire pour reproduire les conditions aseptiques. Chacun d'eux a été intentionnellement dopé avec six fibres prélevées sur un matériau suspect distinct : torchon bleu foncé, torchon bleu ciel, torchon blanc Polox 1200a, et combinaison stérile. Ces fibres de référence serviront ensuite à une comparaison morphologique et colorimétrique avec celles isolées dans les flacons rejetés en production.
-    </p>
+            <div class="analyse-section">
+              <h4 class="hyp-sous-titre">Identification de la source des fibres par dopage contrôlé et comparaison morphologique</h4>
+              <div class="pareto-img-box">
+                <p style="font-size:14px; color:rgba(26,37,64,0.75); line-height:1.8; margin-bottom:12px;">
+                  Afin de vérifier la correspondance entre les fibres retrouvées en production et les matériaux suspects, un protocole de dopage contrôlé a été mis en place. Quatre flacons Biocad rejetés au mirage pour des défauts sans lien avec les fibres ont été sélectionnés comme supports vierges, puis décapsulés sous hotte à flux laminaire pour reproduire les conditions aseptiques. Chacun d'eux a été intentionnellement dopé avec six fibres prélevées sur un matériau suspect distinct : torchon bleu foncé, torchon bleu ciel, torchon blanc Polox 1200a, et combinaison stérile. Ces fibres de référence serviront ensuite à une comparaison morphologique et colorimétrique avec celles isolées dans les flacons rejetés en production.
+                </p>
 
-    <button class="interp-btn" onclick="toggleInterp('interp-dopage', this)">Voir les photos</button>
-    <div class="interp-box" id="interp-dopage">
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:8px;">
-        <div><img src="{{ url_for('static', filename='p1.png') }}" alt="Dopage 1" class="graphe-img"/></div>
-        <div><img src="{{ url_for('static', filename='p2.png') }}" alt="Dopage 2" class="graphe-img"/></div>
-        <div><img src="{{ url_for('static', filename='p3.png') }}" alt="Dopage 3" class="graphe-img"/></div>
-      </div>
-    </div>
+                <button class="interp-btn" onclick="toggleInterp('interp-dopage', this)">Voir les photos</button>
+                <div class="interp-box" id="interp-dopage">
+                  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:8px;">
+                    <div><img src="{{ url_for('static', filename='p1.png') }}" alt="Dopage 1" class="graphe-img"/></div>
+                    <div><img src="{{ url_for('static', filename='p2.png') }}" alt="Dopage 2" class="graphe-img"/></div>
+                    <div><img src="{{ url_for('static', filename='p3.png') }}" alt="Dopage 3" class="graphe-img"/></div>
+                  </div>
+                </div>
 
-    <p style="font-size:14px; color:rgba(26,37,64,0.75); line-height:1.8; margin-top:16px; margin-bottom:12px;">
-      Les flacons ont été filtrés sous vide (membrane 0,45µm), puis les fibres collectées ont été observées au microscope et comparées par couleur et morphologie aux fibres des flacons rejetés au mirage, afin d'identifier la source de la contamination.
-    </p>
+                <p style="font-size:14px; color:rgba(26,37,64,0.75); line-height:1.8; margin-top:16px; margin-bottom:12px;">
+                  Les flacons ont été filtrés sous vide (membrane 0,45µm), puis les fibres collectées ont été observées au microscope et comparées par couleur et morphologie aux fibres des flacons rejetés au mirage, afin d'identifier la source de la contamination.
+                </p>
 
-    <button class="interp-btn" onclick="toggleInterp('interp-dopage-photos', this)">Voir les photos</button>
-    <div class="interp-box" id="interp-dopage-photos">
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:8px;">
-        <div>
-          <img src="{{ url_for('static', filename='combinaison.png') }}" alt="Combinaison" class="graphe-img"/>
-          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Combinaison</p>
-        </div>
-        <div>
-          <img src="{{ url_for('static', filename='torchon bleu.png') }}" alt="Torchon bleu" class="graphe-img"/>
-          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Torchon bleu</p>
-        </div>
-        <div>
-          <img src="{{ url_for('static', filename='torchon bleu ciel.png') }}" alt="Torchon bleu ciel" class="graphe-img"/>
-          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Torchon bleu ciel</p>
-        </div>
-        <div>
-          <img src="{{ url_for('static', filename='papier filtre.png') }}" alt="Papier filtre" class="graphe-img"/>
-          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Papier filtre</p>
-        </div>
-        <div>
-          <img src="{{ url_for('static', filename='torchon blanc.png') }}" alt="Torchon blanc" class="graphe-img"/>
-          <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Torchon blanc</p>
-        </div>
-      </div>
-    </div>
+                <button class="interp-btn" onclick="toggleInterp('interp-dopage-photos', this)">Voir les photos</button>
+                <div class="interp-box" id="interp-dopage-photos">
+                  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:8px;">
+                    <div>
+                      <img src="{{ url_for('static', filename='combinaison.png') }}" alt="Combinaison" class="graphe-img"/>
+                      <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Combinaison</p>
+                    </div>
+                    <div>
+                      <img src="{{ url_for('static', filename='torchon bleu.png') }}" alt="Torchon bleu" class="graphe-img"/>
+                      <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Torchon bleu</p>
+                    </div>
+                    <div>
+                      <img src="{{ url_for('static', filename='torchon bleu ciel.png') }}" alt="Torchon bleu ciel" class="graphe-img"/>
+                      <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Torchon bleu ciel</p>
+                    </div>
+                    <div>
+                      <img src="{{ url_for('static', filename='papier filtre.png') }}" alt="Papier filtre" class="graphe-img"/>
+                      <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Papier filtre</p>
+                    </div>
+                    <div>
+                      <img src="{{ url_for('static', filename='torchon blanc.png') }}" alt="Torchon blanc" class="graphe-img"/>
+                      <p style="font-size:11px; text-align:center; color:rgba(26,37,64,0.5); margin-top:6px;">Torchon blanc</p>
+                    </div>
+                  </div>
+                </div>
 
-    <button class="interp-btn" onclick="toggleInterp('interp-dopage-concl', this)" style="margin-top:8px;">Voir l'interprétation</button>
-    <div class="interp-box" id="interp-dopage-concl">
-      <p style="font-size:13px; color:rgba(26,37,64,0.8); line-height:1.8;">
-        La comparaison par dopage contrôlé révèle que les fibres des torchons blancs Polox 1200a, une fois immergées dans la solution médicamenteuse Biocad, changent de couleur passant du blanc vers un bleuté à grisâtre ce qui correspond exactement à la teinte observée sur les fibres isolées dans les flacons rejetés au mirage.
-        <br><br>
-        Ce changement colorimétrique explique pourquoi l'identification préliminaire avait orienté vers les torchons bleus (H3) ou les combinaisons stériles (H5) : ce n'était pas la couleur naturelle des fibres, mais le résultat d'une interaction avec les composants de la solution.
-        <br><br>
-        Ce résultat constitue une preuve expérimentale forte que la source principale de contamination est le torchon Polox 1200a, confirmant les hypothèses H1 et H2.
-      </p>
-    </div>
-
-  </div>
-</div>
-        <!-- 5 POURQUOI -->
-        <div class="analyse-section">
-          <h3 class="analyse-titre">Analyse des causes racines — Méthode des 5 Pourquoi</h3>
-          <div class="hyp-grid" style="grid-template-columns: 1fr;">
-            <div class="hyp-card" onclick="toggleHyp('panel-5why', this)">
-              <div class="hyp-num">5P</div>
-              <div class="hyp-name">Méthode des 5 Pourquoi — Identification de la cause racine</div>
-            </div>
-          </div>
-          <div class="hyp-panel" id="panel-5why">
-            <div class="pareto-img-box">
-              <img src="{{ url_for('static', filename='5pourquoi.png') }}" alt="5 Pourquoi" class="graphe-img"/>
-              <button class="interp-btn" onclick="toggleInterp('interp-5why', this)">Voir l'interprétation</button>
-              <div class="interp-box" id="interp-5why">
-                      La cause racine des pertes au mirage est la libération de fibres PET par les torchons Polox 1200a dans l'environnement de production aseptique — confirmée expérimentalement par le protocole de dopage contrôlé — aggravée par leur dégradation chimique progressive due à la transestérification par l'alcool éthylique à 70° et à l'hydrolyse thermique à 122°C. Cette analyse oriente directement les actions correctives de la phase Improve vers le remplacement des torchons Polox par des lingettes stériles certifiées non fibreuses et la substitution de l'alcool éthylique par l'IPA stérile à 70°. 
+                <button class="interp-btn" onclick="toggleInterp('interp-dopage-concl', this)" style="margin-top:8px;">Voir l'interprétation</button>
+                <div class="interp-box" id="interp-dopage-concl">
+                  <p style="font-size:13px; color:rgba(26,37,64,0.8); line-height:1.8;">
+                    La comparaison par dopage contrôlé révèle que les fibres des torchons blancs Polox 1200a, une fois immergées dans la solution médicamenteuse Biocad, changent de couleur passant du blanc vers un bleuté à grisâtre ce qui correspond exactement à la teinte observée sur les fibres isolées dans les flacons rejetés au mirage.
+                    <br><br>
+                    Ce changement colorimétrique explique pourquoi l'identification préliminaire avait orienté vers les torchons bleus (H3) ou les combinaisons stériles (H5) : ce n'était pas la couleur naturelle des fibres, mais le résultat d'une interaction avec les composants de la solution.
+                    <br><br>
+                    Ce résultat constitue une preuve expérimentale forte que la source principale de contamination est le torchon Polox 1200a, confirmant les hypothèses H1 et H2.
+                  </p>
+                </div>
               </div>
             </div>
+
+            <!-- 5 POURQUOI -->
+            <div class="analyse-section">
+              <h3 class="analyse-titre">Analyse des causes racines — Méthode des 5 Pourquoi</h3>
+              <div class="hyp-grid" style="grid-template-columns: 1fr;">
+                <div class="hyp-card" onclick="toggleHyp('panel-5why', this)">
+                  <div class="hyp-num">5P</div>
+                  <div class="hyp-name">Méthode des 5 Pourquoi — Identification de la cause racine</div>
+                </div>
+              </div>
+              <div class="hyp-panel" id="panel-5why">
+                <div class="pareto-img-box">
+                  <img src="{{ url_for('static', filename='5pourquoi.png') }}" alt="5 Pourquoi" class="graphe-img"/>
+                  <button class="interp-btn" onclick="toggleInterp('interp-5why', this)">Voir l'interprétation</button>
+                  <div class="interp-box" id="interp-5why">
+                    La cause racine des pertes au mirage est la libération de fibres PET par les torchons Polox 1200a dans l'environnement de production aseptique — confirmée expérimentalement par le protocole de dopage contrôlé — aggravée par leur dégradation chimique progressive due à la transestérification par l'alcool éthylique à 70° et à l'hydrolyse thermique à 122°C. Cette analyse oriente directement les actions correctives de la phase Improve vers le remplacement des torchons Polox par des lingettes stériles certifiées non fibreuses et la substitution de l'alcool éthylique par l'IPA stérile à 70°.
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
-
       </div>
     </div>
 
@@ -499,8 +501,8 @@
 
       <h4 class="hyp-sous-titre">Remplacement des torchons Polox par des lingettes stériles pré-imprégnées à usage unique</h4>
       <div class="pareto-img-box" style="margin-bottom:16px;">
-        <button class="interp-btn" onclick="toggleInterp('interp-C1', this)">Voir la photo</button>
-        <div class="interp-box" id="interp-C1">
+        <button class="interp-btn" onclick="toggleInterp('interp-C1i', this)">Voir la photo</button>
+        <div class="interp-box" id="interp-C1i">
           <img src="{{ url_for('static', filename='C1.png') }}" alt="Lingettes stériles" class="graphe-img"/>
         </div>
       </div>
@@ -521,18 +523,58 @@
         </div>
       </div>
 
-      <h4 class="hyp-sous-titre">Investigation complémentaire — Spectroscopie FTIR-ATR</h4>
+      <h3 class="analyse-titre" style="margin-top:32px;">Investigation complémentaire</h3>
+
+      <h4 class="hyp-sous-titre">Renforcement de la sensibilisation des opérateurs et opératrices aux bonnes pratiques aseptiques</h4>
       <div class="pareto-img-box" style="margin-bottom:16px;">
-        <button class="interp-btn" onclick="toggleInterp('interp-C5', this)">Voir la photo</button>
-        <div class="interp-box" id="interp-C5">
-          <img src="{{ url_for('static', filename='C5.png') }}" alt="FTIR-ATR" class="graphe-img"/>
+        <button class="interp-btn" onclick="toggleInterp('interp-C6', this)">Voir la photo</button>
+        <div class="interp-box" id="interp-C6">
+          <img src="{{ url_for('static', filename='C6.png') }}" alt="Sensibilisation opérateurs" class="graphe-img"/>
+        </div>
+      </div>
+
+      <h4 class="hyp-sous-titre">Acquisition de laveuses et sécheuses dédiées par type de matériel en zone stérile</h4>
+      <div class="pareto-img-box" style="margin-bottom:16px;">
+        <button class="interp-btn" onclick="toggleInterp('interp-C7', this)">Voir la photo</button>
+        <div class="interp-box" id="interp-C7">
+          <img src="{{ url_for('static', filename='C7.png') }}" alt="Laveuses et sécheuses dédiées" class="graphe-img"/>
+        </div>
+      </div>
+
+      <h4 class="hyp-sous-titre">Investigation FTIR-ATR en cas d'insuffisance des actions correctives</h4>
+      <div class="pareto-img-box" style="margin-bottom:16px;">
+        <button class="interp-btn" onclick="toggleInterp('interp-C8', this)">Voir la photo</button>
+        <div class="interp-box" id="interp-C8">
+          <img src="{{ url_for('static', filename='C8.png') }}" alt="Investigation FTIR-ATR" class="graphe-img"/>
         </div>
       </div>
 
     </div>
 
     <!-- C -->
-    <div class="dmaic-panel" id="panel-C"></div>
+    <div class="dmaic-panel" id="panel-C">
+      <div class="panel-tag">C — Control</div>
+      <h2 class="panel-title">Contrôler</h2>
+
+      <h3 class="analyse-titre">Plan de surveillance et évaluation de l'efficacité</h3>
+
+      <h4 class="hyp-sous-titre">Objectif & Suivi du Taux de Pertes</h4>
+      <div class="pareto-img-box" style="margin-bottom:16px;">
+        <button class="interp-btn" onclick="toggleInterp('interp-C9', this)">Voir la photo</button>
+        <div class="interp-box" id="interp-C9">
+          <img src="{{ url_for('static', filename='C9.png') }}" alt="Objectif et suivi du taux de pertes" class="graphe-img"/>
+        </div>
+      </div>
+
+      <h4 class="hyp-sous-titre">Check-list, Vidéo & Investigation FTIR</h4>
+      <div class="pareto-img-box" style="margin-bottom:16px;">
+        <button class="interp-btn" onclick="toggleInterp('interp-C10', this)">Voir la photo</button>
+        <div class="interp-box" id="interp-C10">
+          <img src="{{ url_for('static', filename='C10.png') }}" alt="Check-list, Vidéo et Investigation FTIR" class="graphe-img"/>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 </div>
