@@ -84,13 +84,55 @@
       <div class="detail-tag">Étape 01</div>
       <h2 class="detail-title">Lavage & Stérilisation des flacons</h2>
       <div class="detail-cards">
-        <div class="detail-card">
-          <h4>Lavage</h4>
+
+        <!-- CARD LAVAGE — EXPANDABLE -->
+        <div class="detail-card expandable" onclick="toggleDetailExpand(this)">
+          <div class="detail-card-header">
+            <h4>Lavage</h4>
+            <span class="expand-icon">+</span>
+          </div>
           <p>Les flacons en verre type I transparents sont lavés sur la laveuse, puis placés sous flux laminaire dans des caissettes en acier inoxydable.</p>
+          <div class="detail-expand-body">
+            <ul class="lavage-steps">
+              <li>
+                <span class="step-pressure">0,6 bar</span>
+                <span class="step-text">Prélavage — élimination des particules grossières et poussières présentes dans les flacons</span>
+              </li>
+              <li>
+                <span class="step-pressure">0,8 bar</span>
+                <span class="step-text">Lavage principal — nettoyage approfondi des surfaces internes et externes par action mécanique des jets d'eau</span>
+              </li>
+              <li>
+                <span class="step-pressure">1,2 bar</span>
+                <span class="step-text">Rinçage final — eau distillée filtrée sur filtre stérilisant 0,2 µm, élimination de tout résidu</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="detail-card">
-          <h4>Four à chaleur sèche</h4>
+
+        <!-- CARD FOUR — EXPANDABLE -->
+        <div class="detail-card expandable" onclick="toggleDetailExpand(this)">
+          <div class="detail-card-header">
+            <h4>Four à chaleur sèche</h4>
+            <span class="expand-icon">+</span>
+          </div>
           <p>Cycle thermique : montée à 230°C (185 min) → palier 60 min → refroidissement contrôlé 85 min. Ventilateurs pour distribution homogène de la chaleur.</p>
+          <div class="detail-expand-body">
+            <ul class="lavage-steps">
+              <li>
+                <span class="step-pressure">185 min</span>
+                <span class="step-text">Montée en température jusqu'à environ 230 °C</span>
+              </li>
+              <li>
+                <span class="step-pressure">60 min</span>
+                <span class="step-text">Palier de stérilisation à 230 °C — élimination des micro-organismes et destruction des endotoxines bactériennes</span>
+              </li>
+              <li>
+                <span class="step-pressure">85 min</span>
+                <span class="step-text">Phase de refroidissement contrôlé avant la sortie des flacons</span>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="detail-card">
           <h4>Charges par format</h4>
@@ -134,9 +176,29 @@
           <h4>Origine de la solution</h4>
           <p>Préparée par Biocad en Russie — livrée en poches stériles prêtes à l'emploi. SOTHEMA réalise uniquement le conditionnement.</p>
         </div>
-        <div class="detail-card">
-          <h4>Formats des poches</h4>
+        <!-- CARD FORMATS DES POCHES — EXPANDABLE -->
+        <div class="detail-card expandable" onclick="toggleDetailExpand(this)">
+          <div class="detail-card-header">
+            <h4>Formats des poches</h4>
+            <span class="expand-icon">+</span>
+          </div>
           <p>Poches de 5L pour YPEVA 4mL et 16mL — Poches de 10L pour ZELVA 10mL et 50mL.</p>
+          <div class="detail-expand-body">
+            <ul class="lavage-steps">
+              <li>
+                <span class="step-pressure">Connexion 1</span>
+                <span class="step-text">Destinée au remplissage</span>
+              </li>
+              <li>
+                <span class="step-pressure">Connexion 2</span>
+                <span class="step-text">Destinée à la filtration stérilisante</span>
+              </li>
+              <li>
+                <span class="step-pressure">Connexion 3</span>
+                <span class="step-text">Destinée au prélèvement d'échantillons</span>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="detail-card">
           <h4>Transfert contrôlé</h4>
@@ -252,6 +314,10 @@ function showEtape(index) {
   document.querySelectorAll('.detail-panel').forEach((p, i) => {
     p.classList.toggle('active', i === index);
   });
+}
+
+function toggleDetailExpand(card) {
+  card.classList.toggle('open');
 }
 </script>
 

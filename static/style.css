@@ -1267,3 +1267,93 @@ main {
     overflow-x: auto;
   }
 }
+/* ══ DETAIL CARD EXPANDABLE (Lavage) ══ */
+.detail-card.expandable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.detail-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.detail-card-header h4 {
+  margin-bottom: 0 !important;
+}
+
+.expand-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.4);
+  background: rgba(201,168,76,0.08);
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 22px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+              background 0.2s, border-color 0.2s;
+  display: inline-block;
+}
+
+.detail-card.expandable.open .expand-icon {
+  transform: rotate(45deg);
+  background: rgba(201,168,76,0.18);
+  border-color: var(--gold);
+}
+
+.detail-expand-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.35s ease,
+              margin-top 0.3s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.detail-card.expandable.open .detail-expand-body {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 16px;
+}
+
+.lavage-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0,32,96,0.08);
+}
+
+.lavage-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.step-pressure {
+  flex-shrink: 0;
+  background: var(--blue);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 11px;
+  border-radius: 20px;
+  border: 1px solid rgba(201,168,76,0.3);
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.step-text {
+  font-size: 13px;
+  color: rgba(26,37,64,0.75);
+  line-height: 1.7;
+}
